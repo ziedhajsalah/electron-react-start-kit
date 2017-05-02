@@ -1,6 +1,6 @@
 // @flow
 import React, { Component } from 'react'
-import type { Children } from 'react'
+import type { Children } from 'react' // eslint-disable-line
 
 export default class App extends Component {
   props: {
@@ -9,7 +9,7 @@ export default class App extends Component {
 
   render () {
     return (
-      <div>
+      <div className='container-fluid'>
         {this.props.children}
       </div>
     )

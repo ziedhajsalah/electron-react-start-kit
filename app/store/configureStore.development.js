@@ -8,7 +8,7 @@ import rootReducer from '../reducers'
 
 const history = createBrowserHistory()
 
-const configureStore = (initialState: ?counterStateType) => {
+const configureStore = (initialState) => {
   // Redux Configuration
   const middleware = []
   const enhancers = []
