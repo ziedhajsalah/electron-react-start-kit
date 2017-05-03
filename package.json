@@ -143,6 +143,7 @@
     "sass-loader": "^6.0.3",
     "sinon": "^2.1.0",
     "spectron": "^3.6.2",
+    "standard": "^10.0.2",
     "style-loader": "^0.16.1",
     "stylelint": "^7.10.1",
     "url-loader": "^0.5.8",

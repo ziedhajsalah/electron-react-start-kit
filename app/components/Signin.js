@@ -4,7 +4,7 @@ import { connect } from 'react-redux'
 import * as actions from '../actions'
 
 const renderInput = field =>
-  <input type={field.type} className='form-control' />
+  <input type={field.type} {...field.input} className='form-control' />
 
 let SigninForm = ({ handleSubmit }) => {
   return (
@@ -21,7 +21,6 @@ let SigninForm = ({ handleSubmit }) => {
     </form>
   )
 }
-
 
 SigninForm = reduxForm({ form: 'signin' })(SigninForm)
 
