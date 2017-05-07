@@ -1,8 +1,28 @@
-const apiUrl = 'http://localhost:3000/'
+/* global localStorage */
+import createHistory from 'history/createHashHistory'
+const history = createHistory()
+
+import { signin } from '../utils/api'
+import {
+  AUTH_USER,
+  UNAUTH_USER,
+  AUTH_ERROR
+} from './actionTypes'
+
+const authError = (error) => ({type: AUTH_ERROR, payload: error})
 
 export const signinUser = ({email, password}) => dispatch => {
-  window.fetch(`${apiUrl}signin`, {
-    method: 'POST',
-    body: JSON.stringify({email, password})
-  })
+  signin(email, password)
+    .then(response => {
+      dispatch({type: AUTH_USER})
+      localStorage.setItem('token', response.token)
+      history.push('/feature')
+    }, error => {
+      dispatch(authError(error.message))
+    })
+}
+
+export const signout = () => dispatch => {
+  localStorage.removeItem('token')
+  dispatch({type: UNAUTH_USER})
 }
