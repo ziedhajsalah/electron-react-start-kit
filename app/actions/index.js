@@ -2,7 +2,7 @@
 import createHistory from 'history/createHashHistory'
 const history = createHistory()
 
-import { signin } from '../utils/api'
+import { signin, signup } from '../utils/api'
 import {
   AUTH_USER,
   UNAUTH_USER,
@@ -25,4 +25,15 @@ export const signinUser = ({email, password}) => dispatch => {
 export const signout = () => dispatch => {
   localStorage.removeItem('token')
   dispatch({type: UNAUTH_USER})
+}
+
+export const signupUser = ({email, password}) => dispatch => {
+  signup(email, password)
+    .then(response => {
+      dispatch({type: AUTH_USER})
+      localStorage.setItem('token', response.token)
+      history.push('/feature')
+    }, error => {
+      dispatch(authError(error.message))
+    })
 }

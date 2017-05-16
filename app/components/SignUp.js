@@ -15,8 +15,9 @@ const renderInput = ({type, input, label, meta: {touched, error, warning}}) => (
 )
 
 class Signup extends Component {
-  submitForm ({email, password, confirmPassword}) {
-    console.log(email, password, confirmPassword)
+  submitForm = (formValues) => {
+    const { signupUser } = this.props
+    signupUser(formValues)
   }
 
   render () {
@@ -38,14 +39,14 @@ class Signup extends Component {
         <button className='btn btn-primary'
           disabled={!valid || pristine}
           action='submit'>
-          Signin
+          Signup
         </button>
       </form>
     )
   }
 }
 
-const mapStateToProps = state => ({})
+const mapStateToProps = (state) => ({errorMessage: state.auth.error})
 
 /* eslint-disable no-class-assign */
 Signup = connect(mapStateToProps, actions)(Signup)
@@ -53,6 +54,18 @@ Signup = connect(mapStateToProps, actions)(Signup)
 
 const validate = values => {
   const errors = {}
+
+  if (!values.email) {
+    errors.email = 'The email is required'
+  }
+
+  if (!values.password) {
+    errors.password = 'The password is required'
+  }
+
+  if (!values.confirmPassword) {
+    errors.confirmPassword = 'Please confirm your password'
+  }
 
   if (values.password !== values.confirmPassword) {
     errors.confirmPassword = 'The two passwords does not match!'
