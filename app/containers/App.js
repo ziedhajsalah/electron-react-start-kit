@@ -5,7 +5,7 @@ import type { Children } from 'react' // eslint-disable-line
 export default class App extends Component {
   props: {
     children: Children
-  };
+  }
 
   render () {
     return (

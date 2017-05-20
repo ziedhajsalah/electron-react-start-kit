@@ -8,6 +8,7 @@ import Signup from './components/SignUp'
 import Signin from './components/Signin'
 import Feature from './components/Feature'
 import Signout from './components/Signout'
+import requireAuth from './HOC/requireAuth'
 
 export default () => (
   <App>
@@ -16,7 +17,7 @@ export default () => (
       <Route exact path='/' component={HomePage} />
       <Route path='/signup' component={Signup} />
       <Route path='/signin' component={Signin} />
-      <Route path='/feature' component={Feature} />
+      <Route path='/feature' component={requireAuth(Feature)} />
       <Route path='/signout' component={Signout} />
     </Switch>
   </App>
